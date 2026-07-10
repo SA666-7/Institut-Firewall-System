@@ -2,7 +2,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Institute Firewall System Started");
+        Device admin = new Device(
+                "Admin-PC",
+                "Administration",
+                "192.168.1.10"
+        );
+
+        admin.displayInfo();
 
     }
 }
