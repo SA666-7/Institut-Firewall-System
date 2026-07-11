@@ -2,80 +2,96 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Create devices
-        Device admin = new Device(
-                "Admin-PC",
-                "Administration",
-                "192.168.1.10"
+        // Create users
+        Admin admin = new Admin("admin", "admin123");
+        Student student = new Student("student1", "123456");
+
+        // Login
+        LoginManager loginManager = new LoginManager();
+
+        boolean loginSuccess = loginManager.login(
+                admin,
+                "admin",
+                "admin123"
         );
 
-        Device server = new Device(
-                "Internal-Server",
-                "Server",
-                "192.168.1.20"
-        );
+        if (loginSuccess) {
 
-        Device guest = new Device(
-                "Guest-PC",
-                "Guest",
-                "192.168.1.30"
-        );
+            // Create devices
+            Device adminDevice = new Device(
+                    "Admin-PC",
+                    "Administration",
+                    "192.168.1.10"
+            );
 
-        // Create firewall
-        Firewall firewall = new Firewall();
+            Device server = new Device(
+                    "Internal-Server",
+                    "Server",
+                    "192.168.1.20"
+            );
 
-        // Add firewall rules
-        FirewallRule rule1 = new FirewallRule(
-                "Admin-PC",
-                "Internal-Server",
-                "Allow",
-                "HTTP"
-        );
+            Device guest = new Device(
+                    "Guest-PC",
+                    "Guest",
+                    "192.168.1.30"
+            );
 
-        FirewallRule rule2 = new FirewallRule(
-                "Guest-PC",
-                "Internal-Server",
-                "Deny",
-                "HTTP"
-        );
+            // Create firewall
+            Firewall firewall = new Firewall();
 
-        firewall.addRule(rule1);
-        firewall.addRule(rule2);
+            // Add rules
+            FirewallRule rule1 = new FirewallRule(
+                    "Admin-PC",
+                    "Internal-Server",
+                    "Allow",
+                    "HTTP"
+            );
 
-        // Test traffic
-        boolean adminConnection = firewall.checkConnection(
-                "Admin-PC",
-                "Internal-Server"
-        );
+            FirewallRule rule2 = new FirewallRule(
+                    "Guest-PC",
+                    "Internal-Server",
+                    "Deny",
+                    "HTTP"
+            );
 
-        Traffic traffic1 = new Traffic(
-                "Admin-PC",
-                "Internal-Server",
-                adminConnection ? "Allowed" : "Blocked"
-        );
+            firewall.addRule(rule1);
+            firewall.addRule(rule2);
 
-        boolean guestConnection = firewall.checkConnection(
-                "Guest-PC",
-                "Internal-Server"
-        );
+            // Test traffic
+            boolean adminConnection = firewall.checkConnection(
+                    "Admin-PC",
+                    "Internal-Server"
+            );
 
-        Traffic traffic2 = new Traffic(
-                "Guest-PC",
-                "Internal-Server",
-                guestConnection ? "Allowed" : "Blocked"
-        );
+            Traffic traffic1 = new Traffic(
+                    "Admin-PC",
+                    "Internal-Server",
+                    adminConnection ? "Allowed" : "Blocked"
+            );
 
-        // Display traffic results
-        traffic1.displayTraffic();
-        System.out.println("----------------");
-        traffic2.displayTraffic();
+            boolean guestConnection = firewall.checkConnection(
+                    "Guest-PC",
+                    "Internal-Server"
+            );
 
-        // Security Assessment
-        SecurityAssessment assessment = new SecurityAssessment(85);
-        assessment.displayAssessment();
+            Traffic traffic2 = new Traffic(
+                    "Guest-PC",
+                    "Internal-Server",
+                    guestConnection ? "Allowed" : "Blocked"
+            );
 
-        // Generate Security Report
-        ReportGenerator report = new ReportGenerator();
-        report.generateReport();
+            // Display traffic
+            traffic1.displayTraffic();
+            System.out.println("----------------");
+            traffic2.displayTraffic();
+
+            // Security Assessment
+            SecurityAssessment assessment = new SecurityAssessment(85);
+            assessment.displayAssessment();
+
+            // Generate Report
+            ReportGenerator report = new ReportGenerator();
+            report.generateReport();
+        }
     }
 }
