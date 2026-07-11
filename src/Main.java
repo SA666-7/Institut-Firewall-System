@@ -21,12 +21,10 @@ public class Main {
                 "192.168.1.30"
         );
 
-
         // Create firewall
         Firewall firewall = new Firewall();
 
-
-        // Add rules
+        // Add firewall rules
         FirewallRule rule1 = new FirewallRule(
                 "Admin-PC",
                 "Internal-Server",
@@ -41,13 +39,10 @@ public class Main {
                 "HTTP"
         );
 
-
         firewall.addRule(rule1);
         firewall.addRule(rule2);
 
-
         // Test traffic
-
         boolean adminConnection = firewall.checkConnection(
                 "Admin-PC",
                 "Internal-Server"
@@ -58,7 +53,6 @@ public class Main {
                 "Internal-Server",
                 adminConnection ? "Allowed" : "Blocked"
         );
-
 
         boolean guestConnection = firewall.checkConnection(
                 "Guest-PC",
@@ -71,13 +65,17 @@ public class Main {
                 guestConnection ? "Allowed" : "Blocked"
         );
 
-
-        // Display results
-
+        // Display traffic results
         traffic1.displayTraffic();
         System.out.println("----------------");
-
         traffic2.displayTraffic();
 
+        // Security Assessment
+        SecurityAssessment assessment = new SecurityAssessment(85);
+        assessment.displayAssessment();
+
+        // Generate Security Report
+        ReportGenerator report = new ReportGenerator();
+        report.generateReport();
     }
 }
