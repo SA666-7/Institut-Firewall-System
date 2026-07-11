@@ -10,14 +10,14 @@
                               v
                    +----------------------+
                    |   Institute Network  |
-                   | (Virtual Network)    |
+                   |   (Virtual Network)  |
                    +----------+-----------+
                               |
           +-------------------+-------------------+
           |                   |                   |
           v                   v                   v
    +-------------+     +--------------+    +-------------+
-   | Student PC  |     | Admin PC     |    | Guest PC    |
+   | Student PC  |     |   Admin Pc   |    |   Guest PC  |
    +-------------+     +--------------+    +-------------+
                               |
                               v
@@ -34,22 +34,22 @@
                               |
                               v
                    +----------------------+
-                   | Security Assessment  |
+                   |  Security Assessment |
                    +----------+-----------+
                               |
                               v
                    +----------------------+
-                   | Assessment Criteria  |
+                   |  Assessment Criteria |
                    +----------+-----------+
                               |
                               v
-                   +----------------------+
-                   |Security Recommendation|
-                   +----------+-----------+
+                   +-------------------------+
+                   | Security Recommendation |
+                   +-----------+-------------+
                               |
                               v
                    +----------------------+
-                   | Report Generator     |
+                   |    Report Generator  |
                    +----------+-----------+
                               |
                               v
