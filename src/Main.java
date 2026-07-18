@@ -20,7 +20,6 @@ public class Main {
 
         // عرض معايير التقييم
         System.out.println("===== Security Assessment Criteria =====");
-
         for (AssessmentCriteria c : criteria) {
             c.displayCriteria();
         }
@@ -31,7 +30,12 @@ public class Main {
         SecurityAssessment assessment = new SecurityAssessment();
         assessment.calculateScore(criteria);
 
-        // إنشاء التوصيات تلقائياً
+        // عرض النتيجة
+        assessment.displayAssessment();
+
+        System.out.println();
+
+        // إنشاء التوصيات
         SecurityRecommendation recommendation = new SecurityRecommendation();
         ArrayList<String> recommendations =
                 recommendation.generateRecommendations(criteria);
