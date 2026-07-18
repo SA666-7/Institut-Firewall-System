@@ -1,15 +1,26 @@
+import java.util.ArrayList;
+
 public class ReportGenerator {
 
-    public void generateReport() {
+    public void generateReport(SecurityAssessment assessment,
+                               ArrayList<SecurityRecommendation> recommendations) {
 
         System.out.println("========== Security Report ==========");
-        System.out.println("Firewall Status: Active");
-        System.out.println("Network Monitoring: Running");
-        System.out.println("Security Assessment: Completed");
+
+        System.out.println("Security Score : "
+                + assessment.getSecurityScore() + "/100");
+
+        System.out.println("Risk Level : "
+                + assessment.getRiskLevel());
+
+        System.out.println();
+
         System.out.println("Recommendations:");
-        System.out.println("- Keep firewall rules updated.");
-        System.out.println("- Monitor network traffic regularly.");
-        System.out.println("- Review blocked connections.");
+
+        for (SecurityRecommendation r : recommendations) {
+            r.displayRecommendation();
+        }
+
         System.out.println("=====================================");
     }
 }
