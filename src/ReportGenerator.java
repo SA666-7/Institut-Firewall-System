@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class ReportGenerator {
 
     public void generateReport(SecurityAssessment assessment,
-                               ArrayList<SecurityRecommendation> recommendations) {
+                               ArrayList<String> recommendations) {
 
         System.out.println("========== Security Report ==========");
 
@@ -17,8 +17,16 @@ public class ReportGenerator {
 
         System.out.println("Recommendations:");
 
-        for (SecurityRecommendation r : recommendations) {
-            r.displayRecommendation();
+        if (recommendations.isEmpty()) {
+
+            System.out.println("No recommendations. The network is secure.");
+
+        } else {
+
+            for (String r : recommendations) {
+                System.out.println("- " + r);
+            }
+
         }
 
         System.out.println("=====================================");
