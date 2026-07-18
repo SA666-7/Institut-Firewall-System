@@ -2,12 +2,12 @@ public class AssessmentCriteria {
 
     private String criterionName;
     private int score;
-    private String status;
+    private boolean passed;
 
-    public AssessmentCriteria(String criterionName, int score, String status) {
+    public AssessmentCriteria(String criterionName, int score, boolean passed) {
         this.criterionName = criterionName;
         this.score = score;
-        this.status = status;
+        this.passed = passed;
     }
 
     public String getCriterionName() {
@@ -18,13 +18,13 @@ public class AssessmentCriteria {
         return score;
     }
 
-    public String getStatus() {
-        return status;
+    public boolean isPassed() {
+        return passed;
     }
 
     public void displayCriteria() {
-        System.out.println("Assessment Criterion: " + criterionName);
-        System.out.println("Score: " + score);
-        System.out.println("Status: " + status);
+        System.out.println(criterionName + " : "
+                + (passed ? "Passed" : "Failed")
+                + " (" + score + " points)");
     }
 }
