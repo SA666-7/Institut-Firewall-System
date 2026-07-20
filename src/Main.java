@@ -20,6 +20,7 @@ public class Main {
 
         // عرض معايير التقييم
         System.out.println("===== Security Assessment Criteria =====");
+
         for (AssessmentCriteria c : criteria) {
             c.displayCriteria();
         }
@@ -30,18 +31,23 @@ public class Main {
         SecurityAssessment assessment = new SecurityAssessment();
         assessment.calculateScore(criteria);
 
-        // عرض النتيجة
+        // عرض نتيجة التقييم
         assessment.displayAssessment();
 
         System.out.println();
 
-        // إنشاء التوصيات
+        // إنشاء التوصيات تلقائياً
         SecurityRecommendation recommendation = new SecurityRecommendation();
         ArrayList<String> recommendations =
                 recommendation.generateRecommendations(criteria);
 
-        // إنشاء التقرير
+        // إنشاء التقرير النصي
         ReportGenerator report = new ReportGenerator();
         report.generateReport(assessment, recommendations);
+
+        // إنشاء تقرير HTML
+        HTMLReportGenerator html = new HTMLReportGenerator();
+        html.generateHTML(assessment, recommendations);
+
     }
 }
