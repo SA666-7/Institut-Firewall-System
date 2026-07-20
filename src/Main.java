@@ -4,6 +4,51 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // ==========================
+        // أولاً: محاكاة الجدار الناري
+        // ==========================
+
+        // إنشاء محرك الجدار الناري
+        EngineFirewall firewall = new EngineFirewall();
+
+        // إنشاء قواعد الجدار الناري
+        FirewallRule rule1 = new FirewallRule(
+                "192.168.1.10",
+                "192.168.1.50",
+                80,
+                "TCP",
+                "Allow"
+        );
+
+        FirewallRule rule2 = new FirewallRule(
+                "192.168.1.20",
+                "192.168.1.50",
+                80,
+                "TCP",
+                "Deny"
+        );
+
+        // إضافة القواعد إلى الجدار الناري
+        firewall.addRule(rule1);
+        firewall.addRule(rule2);
+
+        // إنشاء حزم بيانات لاختبار القواعد
+        Packet p1 = new Packet("192.168.1.10", "192.168.1.50", 80, "TCP", "HTTP", "");
+        Packet p2 = new Packet("192.168.1.20", "192.168.1.50", 80, "TCP", "HTTP", "");
+        Packet p3 = new Packet("192.168.1.99", "192.168.1.50", 80, "TCP", "HTTP", "");
+
+        // عرض نتائج فحص الحزم
+        System.out.println("===== Firewall Simulation =====");
+        System.out.println("Packet 1 Result: " + firewall.checkPacket(p1));
+        System.out.println("Packet 2 Result: " + firewall.checkPacket(p2));
+        System.out.println("Packet 3 Result: " + firewall.checkPacket(p3));
+
+        System.out.println();
+
+        // ==========================
+        // ثانياً: تقييم مستوى الأمان
+        // ==========================
+
         // إنشاء قائمة معايير التقييم
         ArrayList<AssessmentCriteria> criteria = new ArrayList<>();
 
@@ -36,7 +81,7 @@ public class Main {
 
         System.out.println();
 
-        // إنشاء التوصيات تلقائياً
+        // إنشاء التوصيات الأمنية
         SecurityRecommendation recommendation = new SecurityRecommendation();
         ArrayList<String> recommendations =
                 recommendation.generateRecommendations(criteria);
@@ -48,6 +93,5 @@ public class Main {
         // إنشاء تقرير HTML
         HTMLReportGenerator html = new HTMLReportGenerator();
         html.generateHTML(assessment, recommendations);
-
     }
 }
