@@ -28,20 +28,54 @@ public class Main {
                 "Deny"
         );
 
+        FirewallRule rule3 = new FirewallRule(
+                "192.168.1.30",
+                "192.168.1.50",
+                22,
+                "SSH",
+                "Allow"
+        );
+
+        FirewallRule rule4 = new FirewallRule(
+                "192.168.1.40",
+                "192.168.1.50",
+                23,
+                "Telnet",
+                "Deny"
+        );
+
+        FirewallRule rule5 = new FirewallRule(
+                "192.168.1.60",
+                "192.168.1.50",
+                443,
+                "HTTPS",
+                "Allow"
+        );
+
         // إضافة القواعد إلى الجدار الناري
         firewall.addRule(rule1);
         firewall.addRule(rule2);
+        firewall.addRule(rule3);
+        firewall.addRule(rule4);
+        firewall.addRule(rule5);
 
         // إنشاء حزم بيانات لاختبار القواعد
         Packet p1 = new Packet("192.168.1.10", "192.168.1.50", 80, "TCP", "HTTP", "");
         Packet p2 = new Packet("192.168.1.20", "192.168.1.50", 80, "TCP", "HTTP", "");
         Packet p3 = new Packet("192.168.1.99", "192.168.1.50", 80, "TCP", "HTTP", "");
+        Packet p4 = new Packet("192.168.1.30", "192.168.1.50", 22, "SSH", "SSH Service", "");
+        Packet p5 = new Packet("192.168.1.40", "192.168.1.50", 23, "Telnet", "Telnet Service", "");
+        Packet p6 = new Packet("192.168.1.60", "192.168.1.50", 443, "HTTPS", "Web Service", "");
 
         // عرض نتائج فحص الحزم
         System.out.println("===== Firewall Simulation =====");
+
         System.out.println("Packet 1 Result: " + firewall.checkPacket(p1));
         System.out.println("Packet 2 Result: " + firewall.checkPacket(p2));
         System.out.println("Packet 3 Result: " + firewall.checkPacket(p3));
+        System.out.println("Packet 4 Result: " + firewall.checkPacket(p4));
+        System.out.println("Packet 5 Result: " + firewall.checkPacket(p5));
+        System.out.println("Packet 6 Result: " + firewall.checkPacket(p6));
 
         System.out.println();
 
