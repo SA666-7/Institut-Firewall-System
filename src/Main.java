@@ -59,13 +59,65 @@ public class Main {
         firewall.addRule(rule4);
         firewall.addRule(rule5);
 
+        // عرض جميع قواعد الجدار الناري
+        firewall.displayRules();
+
+        System.out.println();
+
         // إنشاء حزم بيانات لاختبار القواعد
-        Packet p1 = new Packet("192.168.1.10", "192.168.1.50", 80, "TCP", "HTTP", "");
-        Packet p2 = new Packet("192.168.1.20", "192.168.1.50", 80, "TCP", "HTTP", "");
-        Packet p3 = new Packet("192.168.1.99", "192.168.1.50", 80, "TCP", "HTTP", "");
-        Packet p4 = new Packet("192.168.1.30", "192.168.1.50", 22, "SSH", "SSH Service", "");
-        Packet p5 = new Packet("192.168.1.40", "192.168.1.50", 23, "Telnet", "Telnet Service", "");
-        Packet p6 = new Packet("192.168.1.60", "192.168.1.50", 443, "HTTPS", "Web Service", "");
+        Packet p1 = new Packet(
+                "192.168.1.10",
+                "192.168.1.50",
+                80,
+                "TCP",
+                "HTTP",
+                ""
+        );
+
+        Packet p2 = new Packet(
+                "192.168.1.20",
+                "192.168.1.50",
+                80,
+                "TCP",
+                "HTTP",
+                ""
+        );
+
+        Packet p3 = new Packet(
+                "192.168.1.99",
+                "192.168.1.50",
+                80,
+                "TCP",
+                "HTTP",
+                ""
+        );
+
+        Packet p4 = new Packet(
+                "192.168.1.30",
+                "192.168.1.50",
+                22,
+                "SSH",
+                "SSH Service",
+                ""
+        );
+
+        Packet p5 = new Packet(
+                "192.168.1.40",
+                "192.168.1.50",
+                23,
+                "Telnet",
+                "Telnet Service",
+                ""
+        );
+
+        Packet p6 = new Packet(
+                "192.168.1.60",
+                "192.168.1.50",
+                443,
+                "HTTPS",
+                "Web Service",
+                ""
+        );
 
         // عرض نتائج فحص الحزم
         System.out.println("===== Firewall Simulation =====");
