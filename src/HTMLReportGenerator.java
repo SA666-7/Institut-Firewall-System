@@ -5,7 +5,10 @@ import java.util.ArrayList;
 public class HTMLReportGenerator {
 
     public void generateHTML(SecurityAssessment assessment,
-                             ArrayList<String> recommendations) {
+                             ArrayList<String> recommendations,
+                             int deviceCount,
+                             int firewallRuleCount,
+                             ArrayList<String> trafficResults) {
 
         try {
 
@@ -14,27 +17,54 @@ public class HTMLReportGenerator {
             writer.write("<!DOCTYPE html>");
             writer.write("<html>");
             writer.write("<head>");
-            writer.write("<title>Security Report</title>");
+            writer.write("<title>Firewall Security Report</title>");
             writer.write("</head>");
 
-            writer.write("<body>");
+            writer.write("<body style='font-family:Arial;'>");
 
             writer.write("<h1>Firewall Security Report</h1>");
 
-            writer.write("<h2>Security Score: "
+            writer.write("<hr>");
+
+            // معلومات الشبكة
+            writer.write("<h2>Network Information</h2>");
+            writer.write("<p><b>Number of Devices:</b> " + deviceCount + "</p>");
+            writer.write("<p><b>Number of Firewall Rules:</b> " + firewallRuleCount + "</p>");
+
+            writer.write("<hr>");
+
+            // نتائج محاكاة الجدار الناري
+            writer.write("<h2>Firewall Simulation Results</h2>");
+            writer.write("<ul>");
+
+            for (String result : trafficResults) {
+                writer.write("<li>" + result + "</li>");
+            }
+
+            writer.write("</ul>");
+
+            writer.write("<hr>");
+
+            // نتائج تقييم الأمان
+            writer.write("<h2>Security Assessment</h2>");
+
+            writer.write("<p><b>Security Score:</b> "
                     + assessment.getSecurityScore()
-                    + "/100</h2>");
+                    + "/100</p>");
 
-            writer.write("<h2>Risk Level: "
+            writer.write("<p><b>Risk Level:</b> "
                     + assessment.getRiskLevel()
-                    + "</h2>");
+                    + "</p>");
 
-            writer.write("<h3>Recommendations</h3>");
+            writer.write("<hr>");
+
+            // التوصيات
+            writer.write("<h2>Security Recommendations</h2>");
 
             writer.write("<ul>");
 
-            for(String r : recommendations){
-                writer.write("<li>" + r + "</li>");
+            for (String recommendation : recommendations) {
+                writer.write("<li>" + recommendation + "</li>");
             }
 
             writer.write("</ul>");
@@ -46,9 +76,7 @@ public class HTMLReportGenerator {
 
             System.out.println("HTML Report Created Successfully.");
 
-        }
-
-        catch(IOException e){
+        } catch (IOException e) {
 
             System.out.println("Error creating HTML report.");
 
