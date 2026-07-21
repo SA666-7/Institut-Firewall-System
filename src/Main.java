@@ -235,8 +235,28 @@ public class Main {
         ReportGenerator report = new ReportGenerator();
         report.generateReport(assessment, recommendations);
 
+        // ==========================
+        // تجهيز نتائج المحاكاة لتقرير HTML
+        // ==========================
+
+        ArrayList<String> trafficResults = new ArrayList<>();
+
+        trafficResults.add("Packet 1 : " + firewall.checkPacket(p1));
+        trafficResults.add("Packet 2 : " + firewall.checkPacket(p2));
+        trafficResults.add("Packet 3 : " + firewall.checkPacket(p3));
+        trafficResults.add("Packet 4 : " + firewall.checkPacket(p4));
+        trafficResults.add("Packet 5 : " + firewall.checkPacket(p5));
+        trafficResults.add("Packet 6 : " + firewall.checkPacket(p6));
+
         // إنشاء تقرير HTML
         HTMLReportGenerator html = new HTMLReportGenerator();
-        html.generateHTML(assessment, recommendations);
+
+        html.generateHTML(
+                assessment,
+                recommendations,
+                5,
+                5,
+                trafficResults
+        );
     }
 }
