@@ -11,7 +11,62 @@ public class Main {
         // إنشاء محرك الجدار الناري
         EngineFirewall firewall = new EngineFirewall();
 
+        // ==========================
+        // إنشاء أجهزة الشبكة
+        // ==========================
+
+        Device admin = new Device(
+                "Admin PC",
+                "Administrator",
+                "192.168.1.10"
+        );
+
+        Device student = new Device(
+                "Student PC",
+                "Student",
+                "192.168.1.20"
+        );
+
+        Device guest = new Device(
+                "Guest PC",
+                "Guest",
+                "192.168.1.30"
+        );
+
+        Device server = new Device(
+                "Internal Server",
+                "Server",
+                "192.168.1.50"
+        );
+
+        Device printer = new Device(
+                "Network Printer",
+                "Printer",
+                "192.168.1.60"
+        );
+
+        // عرض الأجهزة
+        System.out.println("===== Network Devices =====");
+
+        admin.displayInfo();
+        System.out.println();
+
+        student.displayInfo();
+        System.out.println();
+
+        guest.displayInfo();
+        System.out.println();
+
+        server.displayInfo();
+        System.out.println();
+
+        printer.displayInfo();
+        System.out.println();
+
+        // ==========================
         // إنشاء قواعد الجدار الناري
+        // ==========================
+
         FirewallRule rule1 = new FirewallRule(
                 "192.168.1.10",
                 "192.168.1.50",
@@ -37,7 +92,7 @@ public class Main {
         );
 
         FirewallRule rule4 = new FirewallRule(
-                "192.168.1.40",
+                "192.168.1.30",
                 "192.168.1.50",
                 23,
                 "Telnet",
@@ -59,12 +114,15 @@ public class Main {
         firewall.addRule(rule4);
         firewall.addRule(rule5);
 
-        // عرض جميع قواعد الجدار الناري
+        // عرض قواعد الجدار الناري
         firewall.displayRules();
 
         System.out.println();
 
-        // إنشاء حزم بيانات لاختبار القواعد
+        // ==========================
+        // إنشاء حزم البيانات
+        // ==========================
+
         Packet p1 = new Packet(
                 "192.168.1.10",
                 "192.168.1.50",
@@ -102,7 +160,7 @@ public class Main {
         );
 
         Packet p5 = new Packet(
-                "192.168.1.40",
+                "192.168.1.30",
                 "192.168.1.50",
                 23,
                 "Telnet",
@@ -118,8 +176,10 @@ public class Main {
                 "Web Service",
                 ""
         );
+                // ==========================
+        // عرض نتائج محاكاة الجدار الناري
+        // ==========================
 
-        // عرض نتائج فحص الحزم
         System.out.println("===== Firewall Simulation =====");
 
         System.out.println("Packet 1 Result: " + firewall.checkPacket(p1));
@@ -135,7 +195,6 @@ public class Main {
         // ثانياً: تقييم مستوى الأمان
         // ==========================
 
-        // إنشاء قائمة معايير التقييم
         ArrayList<AssessmentCriteria> criteria = new ArrayList<>();
 
         criteria.add(new AssessmentCriteria("Enable Default Deny", 20, true));
