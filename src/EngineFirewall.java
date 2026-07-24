@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+
+public class EngineFirewall {
+
+    private ArrayList<FirewallRule> rules;
+
+    public EngineFirewall() {
+        rules = new ArrayList<>();
+    }
+
+    // إضافة قاعدة جديدة
+    public void addRule(FirewallRule rule) {
+        rules.add(rule);
+    }
+
+    // فحص الحزمة
+    public String checkPacket(Packet packet) {
+
+        for (FirewallRule rule : rules) {
+
+            if (rule.getSourceIp().equals(packet.getSourceIp())
+                    && rule.getDestinationIp().equals(packet.getDestinationIp())
+                    && rule.getPort() == packet.getPort()
+                    && rule.getProtocol().equals(packet.getProtocol())) {
+
+                return rule.getAction();
+            }
+        }
+
+        // إذا لم توجد قاعدة مطابقة
+        return "Deny";
+    }
+
+    // عرض جميع قواعد الجدار الناري
+    public void displayRules() {
+        System.out.println("===== Firewall Rules =====");
+
+        for (FirewallRule rule : rules) {
+            rule.displayRule();
+            System.out.println();
+        }
+    }
+}
