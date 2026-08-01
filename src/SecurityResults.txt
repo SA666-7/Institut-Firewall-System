@@ -1,0 +1,27 @@
+===== Devices =====
+Device@75b84c92
+Device@232204a1
+Device@4aa298b7
+Device@7d4991ad
+Device@28d93b30
+Device@1b6d3586
+Device@4554617c
+
+===== Firewall Rules =====
+192.168.1.50 -> 192.168.1.10 : Port 80 TCP Allow
+192.168.1.60 -> 192.168.1.10 : Port 80 TCP Deny
+192.168.1.105 -> 192.168.1.10 : Port 22 SSH Allow
+192.168.1.105 -> 192.168.1.10 : Port 23 Telnet Deny
+192.168.1.70 -> 192.168.1.10 : Port 443 HTTPS Allow
+
+===== Traffic Logs =====
+192.168.1.50,192.168.1.10,80,TCP,Allow
+192.168.1.60,192.168.1.10,80,TCP,Deny
+192.168.1.99,192.168.1.10,80,TCP,Deny
+192.168.1.105,192.168.1.10,22,SSH,Allow
+192.168.1.105,192.168.1.10,23,Telnet,Deny
+192.168.1.70,192.168.1.10,443,HTTPS,Allow
+
+===== Security Assessment =====
+Security Score: 80/100
+Risk Level: Low
