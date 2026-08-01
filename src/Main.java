@@ -10,7 +10,6 @@ public class Main {
 
         EngineFirewall firewall = new EngineFirewall();
 
-
         // ==========================
         // إنشاء أجهزة الشبكة
         // ==========================
@@ -57,7 +56,6 @@ public class Main {
                 "192.168.1.70"
         );
 
-
         // عرض الأجهزة
 
         System.out.println("===== Network Devices =====");
@@ -83,13 +81,10 @@ public class Main {
         printer.displayInfo();
         System.out.println();
 
-
         // ==========================
         // إنشاء قواعد الجدار الناري
         // ==========================
 
-
-        // Admin يسمح بالوصول إلى Web Server
         FirewallRule rule1 = new FirewallRule(
                 "192.168.1.50",
                 "192.168.1.10",
@@ -98,8 +93,6 @@ public class Main {
                 "Allow"
         );
 
-
-        // Student يمنع الوصول إلى Web Server
         FirewallRule rule2 = new FirewallRule(
                 "192.168.1.60",
                 "192.168.1.10",
@@ -108,8 +101,6 @@ public class Main {
                 "Deny"
         );
 
-
-        // Guest يسمح فقط SSH
         FirewallRule rule3 = new FirewallRule(
                 "192.168.1.105",
                 "192.168.1.10",
@@ -118,8 +109,6 @@ public class Main {
                 "Allow"
         );
 
-
-        // منع Telnet للـ Guest
         FirewallRule rule4 = new FirewallRule(
                 "192.168.1.105",
                 "192.168.1.10",
@@ -128,8 +117,6 @@ public class Main {
                 "Deny"
         );
 
-
-        // Printer يسمح HTTPS
         FirewallRule rule5 = new FirewallRule(
                 "192.168.1.70",
                 "192.168.1.10",
@@ -138,13 +125,11 @@ public class Main {
                 "Allow"
         );
 
-
         firewall.addRule(rule1);
         firewall.addRule(rule2);
         firewall.addRule(rule3);
         firewall.addRule(rule4);
         firewall.addRule(rule5);
-
 
         firewall.displayRules();
 
@@ -152,7 +137,6 @@ public class Main {
         // ==========================
         // إنشاء حزم البيانات
         // ==========================
-
 
         Packet p1 = new Packet(
                 "192.168.1.50",
@@ -163,7 +147,6 @@ public class Main {
                 ""
         );
 
-
         Packet p2 = new Packet(
                 "192.168.1.60",
                 "192.168.1.10",
@@ -172,7 +155,6 @@ public class Main {
                 "HTTP",
                 ""
         );
-
 
         // جهاز غير معروف
         Packet p3 = new Packet(
@@ -184,7 +166,6 @@ public class Main {
                 ""
         );
 
-
         Packet p4 = new Packet(
                 "192.168.1.105",
                 "192.168.1.10",
@@ -193,7 +174,6 @@ public class Main {
                 "SSH Service",
                 ""
         );
-
 
         Packet p5 = new Packet(
                 "192.168.1.105",
@@ -204,7 +184,6 @@ public class Main {
                 ""
         );
 
-
         Packet p6 = new Packet(
                 "192.168.1.70",
                 "192.168.1.10",
@@ -213,7 +192,6 @@ public class Main {
                 "Web Service",
                 ""
         );
-
 
         // ==========================
         // عرض نتائج المحاكاة
@@ -228,9 +206,7 @@ public class Main {
         System.out.println("Packet 5 Result: " + firewall.checkPacket(p5));
         System.out.println("Packet 6 Result: " + firewall.checkPacket(p6));
 
-
         System.out.println();
-
 
         // ==========================
         // ثانياً: تقييم مستوى الأمان
@@ -249,27 +225,20 @@ public class Main {
         criteria.add(new AssessmentCriteria("Strong Passwords", 5, false));
         criteria.add(new AssessmentCriteria("Enable Event Logging", 5, true));
 
-
         System.out.println("===== Security Assessment Criteria =====");
-
 
         for (AssessmentCriteria c : criteria) {
             c.displayCriteria();
         }
 
-
         System.out.println();
-
-
         SecurityAssessment assessment = new SecurityAssessment();
 
         assessment.calculateScore(criteria);
 
         assessment.displayAssessment();
 
-
         System.out.println();
-
 
         // ==========================
         // التوصيات الأمنية
@@ -278,61 +247,73 @@ public class Main {
         SecurityRecommendation recommendation =
                 new SecurityRecommendation();
 
-
         ArrayList<String> recommendations =
                 recommendation.generateRecommendations(criteria);
 
-
-
         ReportGenerator report =
                 new ReportGenerator();
-
 
         report.generateReport(
                 assessment,
                 recommendations
         );
 
-
-
         // ==========================
         // تجهيز تقرير HTML
         // ==========================
-
-
-        ArrayList<String> trafficResults =
+    ArrayList<String> trafficResults =
                 new ArrayList<>();
 
-
         trafficResults.add(
-                "Packet 1 : " + firewall.checkPacket(p1)
+                p1.getSourceIp() + "," +
+                p1.getDestinationIp() + "," +
+                p1.getPort() + "," +
+                p1.getProtocol() + "," +
+                firewall.checkPacket(p1)
         );
 
         trafficResults.add(
-                "Packet 2 : " + firewall.checkPacket(p2)
+                p2.getSourceIp() + "," +
+                p2.getDestinationIp() + "," +
+                p2.getPort() + "," +
+                p2.getProtocol() + "," +
+                firewall.checkPacket(p2)
         );
 
         trafficResults.add(
-                "Packet 3 : " + firewall.checkPacket(p3)
+                p3.getSourceIp() + "," +
+                p3.getDestinationIp() + "," +
+                p3.getPort() + "," +
+                p3.getProtocol() + "," +
+                firewall.checkPacket(p3)
         );
 
         trafficResults.add(
-                "Packet 4 : " + firewall.checkPacket(p4)
+                p4.getSourceIp() + "," +
+                p4.getDestinationIp() + "," +
+                p4.getPort() + "," +
+                p4.getProtocol() + "," +
+                firewall.checkPacket(p4)
         );
 
         trafficResults.add(
-                "Packet 5 : " + firewall.checkPacket(p5)
+                p5.getSourceIp() + "," +
+                p5.getDestinationIp() + "," +
+                p5.getPort() + "," +
+                p5.getProtocol() + "," +
+                firewall.checkPacket(p5)
         );
 
         trafficResults.add(
-                "Packet 6 : " + firewall.checkPacket(p6)
+                p6.getSourceIp() + "," +
+                p6.getDestinationIp() + "," +
+                p6.getPort() + "," +
+                p6.getProtocol() + "," +
+                firewall.checkPacket(p6)
         );
-
-
 
         HTMLReportGenerator html =
                 new HTMLReportGenerator();
-
 
         html.generateHTML(
                 assessment,
