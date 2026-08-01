@@ -26,26 +26,44 @@ public class HTMLReportGenerator {
 
             writer.write("<hr>");
 
-            // معلومات الشبكة
+            // Network Information
             writer.write("<h2>Network Information</h2>");
             writer.write("<p><b>Number of Devices:</b> " + deviceCount + "</p>");
             writer.write("<p><b>Number of Firewall Rules:</b> " + firewallRuleCount + "</p>");
 
             writer.write("<hr>");
 
-            // نتائج محاكاة الجدار الناري
+            // Firewall Simulation Results
             writer.write("<h2>Firewall Simulation Results</h2>");
-            writer.write("<ul>");
+
+            writer.write("<table border='1' cellspacing='0' cellpadding='8'>");
+
+            writer.write("<tr>");
+            writer.write("<th>Source IP</th>");
+            writer.write("<th>Destination IP</th>");
+            writer.write("<th>Port</th>");
+            writer.write("<th>Protocol</th>");
+            writer.write("<th>Result</th>");
+            writer.write("</tr>");
 
             for (String result : trafficResults) {
-                writer.write("<li>" + result + "</li>");
+
+                String[] data = result.split(",");
+
+                writer.write("<tr>");
+
+                for (String item : data) {
+                    writer.write("<td>" + item + "</td>");
+                }
+
+                writer.write("</tr>");
             }
 
-            writer.write("</ul>");
+            writer.write("</table>");
 
             writer.write("<hr>");
 
-            // نتائج تقييم الأمان
+            // Security Assessment
             writer.write("<h2>Security Assessment</h2>");
 
             writer.write("<p><b>Security Score:</b> "
@@ -58,7 +76,7 @@ public class HTMLReportGenerator {
 
             writer.write("<hr>");
 
-            // التوصيات
+            // Security Recommendations
             writer.write("<h2>Security Recommendations</h2>");
 
             writer.write("<ul>");
