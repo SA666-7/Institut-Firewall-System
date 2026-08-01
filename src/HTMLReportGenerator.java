@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,7 +13,9 @@ public class HTMLReportGenerator {
 
         try {
 
-            FileWriter writer = new FileWriter("C:\\Users\\سـاره\\Desktop\\SecurityReport.html");
+            File file = new File("C:\\Users\\سـاره\\Desktop\\SecurityReport.html");
+
+            FileWriter writer = new FileWriter(file);
 
             writer.write("<!DOCTYPE html>");
             writer.write("<html>");
@@ -93,11 +96,14 @@ public class HTMLReportGenerator {
             writer.close();
 
             System.out.println("HTML Report Created Successfully.");
+            System.out.println("Report Path: " + file.getAbsolutePath());
+            System.out.println("File Exists: " + file.exists());
 
         } catch (IOException e) {
 
             System.out.println("Error creating HTML report.");
             e.printStackTrace();
+
         }
 
     }
