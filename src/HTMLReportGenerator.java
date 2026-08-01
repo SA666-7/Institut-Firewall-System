@@ -12,7 +12,7 @@ public class HTMLReportGenerator {
 
         try {
 
-            FileWriter writer = new FileWriter("SecurityReport.html");
+            FileWriter writer = new FileWriter("C:\\Users\\سـاره\\Desktop\\SecurityReport.html");
 
             writer.write("<!DOCTYPE html>");
             writer.write("<html>");
@@ -97,9 +97,8 @@ public class HTMLReportGenerator {
         } catch (IOException e) {
 
             System.out.println("Error creating HTML report.");
-
+            e.printStackTrace();
         }
 
     }
-
 }
