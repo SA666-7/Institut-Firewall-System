@@ -32,4 +32,11 @@ public class Device {
         System.out.println("Device Type: " + type);
         System.out.println("IP Address: " + ipAddress);
     }
+
+    @Override
+    public String toString() {
+        return "Device Name: " + name
+                + ", Device Type: " + type
+                + ", IP Address: " + ipAddress;
+    }
 }

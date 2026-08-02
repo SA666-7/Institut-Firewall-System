@@ -1,11 +1,11 @@
 ===== Devices =====
-Device@75b84c92
-Device@232204a1
-Device@4aa298b7
-Device@7d4991ad
-Device@28d93b30
-Device@1b6d3586
-Device@4554617c
+Device Name: Gateway-router, Device Type: Router, IP Address: 192.168.1.1
+Device Name: Core-switch, Device Type: Switch, IP Address: 192.168.1.2
+Device Name: Web-server-01, Device Type: Server, IP Address: 192.168.1.10
+Device Name: Admin-PC, Device Type: Administrator, IP Address: 192.168.1.50
+Device Name: Guest-laptop, Device Type: Guest, IP Address: 192.168.1.105
+Device Name: Student-PC, Device Type: Student, IP Address: 192.168.1.60
+Device Name: Network-Printer, Device Type: Printer, IP Address: 192.168.1.70
 
 ===== Firewall Rules =====
 192.168.1.50 -> 192.168.1.10 : Port 80 TCP Allow
