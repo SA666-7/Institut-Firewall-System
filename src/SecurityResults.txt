@@ -1,0 +1,27 @@
+===== Devices =====
+Device Name: Gateway-router, Device Type: Router, IP Address: 192.168.1.1
+Device Name: Core-switch, Device Type: Switch, IP Address: 192.168.1.2
+Device Name: Web-server-01, Device Type: Server, IP Address: 192.168.1.10
+Device Name: Admin-PC, Device Type: Administrator, IP Address: 192.168.1.50
+Device Name: Guest-laptop, Device Type: Guest, IP Address: 192.168.1.105
+Device Name: Student-PC, Device Type: Student, IP Address: 192.168.1.60
+Device Name: Network-Printer, Device Type: Printer, IP Address: 192.168.1.70
+
+===== Firewall Rules =====
+192.168.1.50 -> 192.168.1.10 : Port 80 TCP Allow
+192.168.1.60 -> 192.168.1.10 : Port 80 TCP Deny
+192.168.1.105 -> 192.168.1.10 : Port 22 SSH Allow
+192.168.1.105 -> 192.168.1.10 : Port 23 Telnet Deny
+192.168.1.70 -> 192.168.1.10 : Port 443 HTTPS Allow
+
+===== Traffic Logs =====
+192.168.1.50,192.168.1.10,80,TCP,Allow
+192.168.1.60,192.168.1.10,80,TCP,Deny
+192.168.1.99,192.168.1.10,80,TCP,Deny
+192.168.1.105,192.168.1.10,22,SSH,Allow
+192.168.1.105,192.168.1.10,23,Telnet,Deny
+192.168.1.70,192.168.1.10,443,HTTPS,Allow
+
+===== Security Assessment =====
+Security Score: 80/100
+Risk Level: Low
