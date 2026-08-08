@@ -58,7 +58,10 @@ public class HTMLReportGenerator {
             writer.write("<hr>");
 
 
+            // ==========================================
             // Network Information
+            // ==========================================
+
             writer.write("<h2>Network Information</h2>");
 
             writer.write("<table>");
@@ -84,7 +87,10 @@ public class HTMLReportGenerator {
             writer.write("<hr>");
 
 
+            // ==========================================
             // Firewall Simulation Results
+            // ==========================================
+
             writer.write("<h2>Firewall Simulation Results</h2>");
 
             writer.write("<table>");
@@ -105,7 +111,7 @@ public class HTMLReportGenerator {
                 writer.write("<tr>");
 
                 for (String item : data) {
-                    writer.write("<td>" + item + "</td>");
+                    writer.write("<td>" + item.trim() + "</td>");
                 }
 
                 writer.write("</tr>");
@@ -117,7 +123,10 @@ public class HTMLReportGenerator {
             writer.write("<hr>");
 
 
+            // ==========================================
             // Security Assessment
+            // ==========================================
+
             writer.write("<h2>Security Assessment</h2>");
 
             writer.write("<table>");
@@ -145,12 +154,101 @@ public class HTMLReportGenerator {
             writer.write("<hr>");
 
 
+            // ==========================================
             // Security Recommendations
+            // ==========================================
+
             writer.write("<h2>Security Recommendations</h2>");
 
+            /*
+             * Add additional security recommendations based on:
+             * - Network device roles
+             * - Firewall rules
+             * - Protocols and ports used in the simulation
+             */
+
+            ArrayList<String> finalRecommendations = new ArrayList<>();
+
+            // Add existing recommendations first
+            if (recommendations != null) {
+                finalRecommendations.addAll(recommendations);
+            }
+
+
+            // Recommendation 1
+            String recommendation1 = "Isolate Guest Network.";
+            if (!finalRecommendations.contains(recommendation1)) {
+                finalRecommendations.add(recommendation1);
+            }
+
+
+            // Recommendation 2
+            String recommendation2 = "Use Strong Passwords.";
+            if (!finalRecommendations.contains(recommendation2)) {
+                finalRecommendations.add(recommendation2);
+            }
+
+
+            // Recommendation 3
+            String recommendation3 =
+                    "Separate Student and Administrator Networks.";
+            if (!finalRecommendations.contains(recommendation3)) {
+                finalRecommendations.add(recommendation3);
+            }
+
+
+            // Recommendation 4
+            String recommendation4 =
+                    "Use HTTPS instead of HTTP whenever possible.";
+            if (!finalRecommendations.contains(recommendation4)) {
+                finalRecommendations.add(recommendation4);
+            }
+
+
+            // Recommendation 5
+            String recommendation5 =
+                    "Allow SSH only for authorized users and trusted devices.";
+            if (!finalRecommendations.contains(recommendation5)) {
+                finalRecommendations.add(recommendation5);
+            }
+
+
+            // Recommendation 6
+            String recommendation6 =
+                    "Keep Telnet blocked and use SSH as a secure alternative.";
+            if (!finalRecommendations.contains(recommendation6)) {
+                finalRecommendations.add(recommendation6);
+            }
+
+
+            // Recommendation 7
+            String recommendation7 =
+                    "Restrict HTTPS access to required services only.";
+            if (!finalRecommendations.contains(recommendation7)) {
+                finalRecommendations.add(recommendation7);
+            }
+
+
+            // Recommendation 8
+            String recommendation8 =
+                    "Review firewall rules regularly and remove unnecessary rules.";
+            if (!finalRecommendations.contains(recommendation8)) {
+                finalRecommendations.add(recommendation8);
+            }
+
+
+            // Recommendation 9
+            String recommendation9 =
+                    "Enable network traffic logging and monitor denied connections.";
+            if (!finalRecommendations.contains(recommendation9)) {
+                finalRecommendations.add(recommendation9);
+            }
+
+
+            // Display all recommendations
             writer.write("<ol>");
 
-            for (String recommendation : recommendations) {
+            for (String recommendation : finalRecommendations) {
 
                 writer.write("<li>"
                         + recommendation
@@ -159,6 +257,10 @@ public class HTMLReportGenerator {
 
             writer.write("</ol>");
 
+
+            // ==========================================
+            // End of Report
+            // ==========================================
 
             writer.write("</body>");
             writer.write("</html>");
